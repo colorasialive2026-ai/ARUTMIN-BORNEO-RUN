@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Registrasi - Arutmin Borneo Run 2026</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+    background-image: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.05) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 20%);
+  }
+  .form-input {
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    background-color: #ffffff;
+  }
+  .form-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+  }
+  .form-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 0.5rem;
+  }
+  .required {
+    color: #ef4444;
+  }
+  .radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.95rem;
+    background: #fff;
+  }
+  .radio-group label:hover {
+    border-color: #3b82f6;
+    background-color: #f8fafc;
+  }
+  .radio-group input:checked + span {
+    color: #2563eb;
+    font-weight: 600;
+  }
+  .radio-group label:has(input:checked) {
+    border-color: #3b82f6;
+    background-color: #eff6ff;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  }
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f1f5f9;
+    margin-bottom: 1.5rem;
+  }
+  .section-title i {
+    color: #2563eb;
+    background: #eff6ff;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+</style>
+</head>
+<body class="min-h-screen">
+
+  
+  <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-slate-100">
+    <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <img src="logo.png" alt="Logo Arutmin Borneo Run" class="h-12 w-auto">
+        <div>
+          <h1 class="font-bold text-slate-800 text-sm md:text-base leading-tight">Arutmin Borneo Run 2026</h1>
+          <p class="text-[10px] md:text-xs text-slate-500">arutminborneorun.com</p>
+        </div>
+      </div>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+        <a href="#" class="hover:text-blue-600 transition">Beranda</a>
+        <a href="#" class="text-blue-600 font-semibold">Registrasi</a>
+        <a href="#" class="hover:text-blue-600 transition">Informasi</a>
+      </nav>
+      <button class="md:hidden text-slate-600 text-xl"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 py-8 md:py-12">
+    
+    
+    <div class="mb-8 rounded-3xl overflow-hidden shadow-xl">
+      <img src="banner.png" alt="Banner Arutmin Borneo Run 2026" class="w-full object-cover">
+    </div>
+
+    
+    <div class="mb-10 text-center">
+      <span class="inline-block px-4 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-semibold tracking-wide mb-3">FORMULIR PENDAFTARAN</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 tracking-tight">Registrasi Peserta</h2>
+      <p class="text-slate-500 mt-3 text-sm md:text-base max-w-xl mx-auto">Silakan isi data berikut dengan lengkap dan benar untuk mengikuti Arutmin Borneo Run 2026.</p>
+    </div>
+
+    <form id="registrationForm" class="space-y-8 bg-white p-6 md:p-10 rounded-3xl shadow-xl border border-slate-100">
+
+      
+      <div class="space-y-5">
+        <h3 class="section-title"><i class="fas fa-user"></i> Data Diri</h3>
+        
+        <div>
+          <label for="kategori" class="form-label">Kategori Lari <span class="required">*</span></label>
+          <select id="kategori" name="kategori" class="form-input" required>
+            <option value="" disabled selected>Pilih Kategori</option>
+            <option value="5k" data-price="290000">Fun Run 5K - Rp 290.000</option>
+            <option value="10k" data-price="419000">10K - Rp 419.000</option>
+            <option value="half" data-price="559000">Half Marathon 21K - Rp 559.000</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="nama" class="form-label">Nama Lengkap <span class="required">*</span></label>
+          <input type="text" id="nama" name="nama" class="form-input" placeholder="Nama Lengkap Sesuai Kartu Identitas" required>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div>
+            <label for="email" class="form-label">Alamat Email <span class="required">*</span></label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="Contoh: email@domain.com" required>
+          </div>
+          <div>
+            <label for="telepon" class="form-label">Nomor Telepon <span class="required">*</span></label>
+            <input type="tel" id="telepon" name="telepon" class="form-input" placeholder="08xxxxxxxxxx" required>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="space-y-5">
+        <h3 class="section-title"><i class="fas fa-map-marker-alt"></i> Alamat & Demografi</h3>
+        
+        <div>
+          <label for="gender" class="form-label">Jenis Kelamin <span class="required">*</span></label>
+          <select id="gender" name="gender" class="form-input" required>
+            <option value="" disabled selected>Pilih Jenis Kelamin</option>
+            <option value="laki">Laki-laki</option>
+            <option value="perempuan">Perempuan</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div>
+            <label for="tempat_lahir" class="form-label">Tempat Lahir <span class="required">*</span></label>
+            <input type="text" id="tempat_lahir" name="tempat_lahir" class="form-input" required>
+          </div>
+          <div>
+            <label for="tanggal_lahir" class="form-label">Tanggal Lahir <span class="required">*</span></label>
+            <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="form-input" required>
+          </div>
+        </div>
+
+        <div>
+          <label for="alamat" class="form-label">Alamat <span class="required">*</span></label>
+          <textarea id="alamat" name="alamat" rows="2" class="form-input" required></textarea>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div>
+            <label for="kecamatan" class="form-label">Kecamatan <span class="required">*</span></label>
+            <input type="text" id="kecamatan" name="kecamatan" class="form-input" required>
+          </div>
+          <div>
+            <label for="kabupaten" class="form-label">Kabupaten/Kota <span class="required">*</span></label>
+            <input type="text" id="kabupaten" name="kabupaten" class="form-input" required>
+          </div>
+          <div>
+            <label for="provinsi" class="form-label">Provinsi <span class="required">*</span></label>
+            <input type="text" id="provinsi" name="provinsi" class="form-input" required>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="space-y-5">
+        <h3 class="section-title"><i class="fas fa-id-card"></i> Kontak Darurat & Perlengkapan</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div>
+            <label for="ktp" class="form-label">Nomor Kartu Identitas <span class="required">*</span></label>
+            <input type="text" id="ktp" name="ktp" class="form-input" required>
+          </div>
+          <div>
+            <label for="gol_darah" class="form-label">Golongan Darah <span class="required">*</span></label>
+            <select id="gol_darah" name="gol_darah" class="form-input" required>
+              <option value="" disabled selected>Pilih Golongan Darah</option>
+              <option>A</option>
+              <option>B</option>
+              <option>AB</option>
+              <option>O</option>
+              <option>Tidak Tahu</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div>
+            <label for="darurat_nama" class="form-label">Nama Kontak Darurat <span class="required">*</span></label>
+            <input type="text" id="darurat_nama" name="darurat_nama" class="form-input" required>
+          </div>
+          <div>
+            <label for="darurat_telp" class="form-label">Nomor Telp Kontak Darurat <span class="required">*</span></label>
+            <input type="tel" id="darurat_telp" name="darurat_telp" class="form-input" required>
+          </div>
+        </div>
+
+        <div>
+          <label for="jersey" class="form-label">Ukuran Jersey / Kaos Lari <span class="required">*</span></label>
+          <select id="jersey" name="jersey" class="form-input" required>
+            <option value="" disabled selected>Pilih Ukuran</option>
+            <option>XS</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+            <option>XXL</option>
+          </select>
+        </div>
+      </div>
+
+      
+      <div class="space-y-5">
+        <h3 class="section-title"><i class="fas fa-users"></i> Informasi Tambahan</h3>
+        
+        <div>
+          <label class="form-label">Apakah Anda bagian dari komunitas lari? <span class="required">*</span></label>
+          <div class="grid grid-cols-2 gap-4 mt-2 radio-group">
+            <label>
+              <input type="radio" name="komunitas" value="ya" class="w-4 h-4 text-blue-600">
+              <span>Ya</span>
+            </label>
+            <label>
+              <input type="radio" name="komunitas" value="tidak" class="w-4 h-4 text-blue-600" checked>
+              <span>Tidak</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label for="nama_komunitas" class="form-label">Nama Komunitas (Jika Ya)</label>
+          <input type="text" id="nama_komunitas" name="nama_komunitas" class="form-input" placeholder="Masukkan nama komunitas">
+        </div>
+
+        <div>
+          <label class="form-label">Apakah Anda mengikuti Special Zone (Khusus Wanita)? <span class="required">*</span></label>
+          <div class="grid grid-cols-2 gap-4 mt-2 radio-group">
+            <label>
+              <input type="radio" name="special_zone" value="ya" class="w-4 h-4 text-blue-600">
+              <span>Ya</span>
+            </label>
+            <label>
+              <input type="radio" name="special_zone" value="tidak" class="w-4 h-4 text-blue-600" checked>
+              <span>Tidak</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="space-y-5">
+        <h3 class="section-title"><i class="fas fa-file-signature"></i> Pernyataan Persetujuan</h3>
+        
+        <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 text-sm text-slate-600 max-h-48 overflow-y-auto">
+          <p class="font-bold text-slate-700 mb-2">LEMBAR PELEPASAN DAN PEMBEBASAN TANGGUNG JAWAB PENYELENGGARA ARUTMIN BORNEO RUN 2026</p>
+          <p class="mb-2">Dengan menyetujui formulir ini, saya mengakui bahwa "PT. Arutmin Indonesia" adalah badan hukum penyelenggara acara, dan "IdeaRun" adalah perusahaan manajemen event.</p>
+          <p>Saya menyatakan bahwa saya mengikuti acara ini atas kemauan sendiri, dalam kondisi sehat jasmani dan rohani, dan akan mematuhi semua aturan yang berlaku. Saya melepaskan dan membebaskan penyelenggara dari segala tuntutan, gugatan, atau tanggung jawab hukum yang mungkin timbul akibat partisipasi saya dalam acara ini.</p>
+        </div>
+
+        <div class="space-y-3 mt-4">
+          <label class="flex items-start gap-3 cursor-pointer">
+            <input type="checkbox" class="mt-1 w-4 h-4 text-blue-600 rounded" required>
+            <span class="text-sm text-slate-700">Saya menyatakan data yang diisi adalah benar dan saya dalam kondisi sehat untuk mengikuti lari.</span>
+          </label>
+          
+          <label class="flex items-start gap-3 cursor-pointer">
+            <input type="checkbox" class="mt-1 w-4 h-4 text-blue-600 rounded" required>
+            <span class="text-sm text-slate-700">Saya telah membaca, memahami, dan menyetujui Lembar Pelepasan dan Pembebasan Tanggung Jawab Penyelenggara.</span>
+          </label>
+        </div>
+      </div>
+
+      
+      <div class="pt-6 border-t border-slate-200">
+        <button type="button" id="confirmBtn" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-4 px-6 rounded-xl transition-all transform hover:scale-[1.01] flex items-center justify-center gap-2 text-base shadow-lg shadow-blue-500/30">
+          <i class="fas fa-check-circle"></i>
+          KONFIRMASI PEMBAYARAN
+        </button>
+        <p class="text-center text-xs text-slate-500 mt-3">Dengan menekan tombol di atas, Anda akan diarahkan ke halaman pembayaran QRIS.</p>
+      </div>
+
+    </form>
+  </main>
+
+  <footer class="py-8 text-center text-xs text-slate-400 border-t border-slate-100 mt-12">
+    © 2026 Arutmin Borneo Run. All Rights Reserved.
+  </footer>
+
+  <script>
+    document.getElementById('confirmBtn').addEventListener('click', function() {
+      const kategoriSelect = document.getElementById('kategori');
+      const idx = kategoriSelect.selectedIndex;
+      if (idx < 0) { alert('Silakan pilih kategori lari terlebih dahulu.'); return; }
+      const selectedOption = kategoriSelect.options[idx];
+      const price = selectedOption.getAttribute('data-price');
+      const category = selectedOption.value;
+
+      // Validasi sederhana
+      if(!category) {
+        alert('Silakan pilih kategori lari terlebih dahulu.');
+        return;
+      }
+
+      // Simpan ke localStorage untuk dikirim ke qris.html
+      localStorage.setItem('abr_price', price);
+      localStorage.setItem('abr_category', category);
+
+      // Redirect ke qris.html
+      window.location.href = 'qris.html';
+    });
+  </script>
+
+</body>
+</html>
