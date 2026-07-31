@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pendaftaran Berhasil - Arutmin Borneo Run 2026</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+    background-image: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.08) 0%, transparent 60%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Animasi Checkmark Premium */
+  .checkmark-wrapper {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #10b981, #059669);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.4), 0 8px 10px -6px rgba(16, 185, 129, 0.3);
+    animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  }
+
+  .checkmark-icon {
+    color: white;
+    font-size: 3rem;
+    animation: drawCheck 0.8s ease-in-out 0.3s both;
+  }
+
+  @keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    70% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes drawCheck {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+  }
+
+  /* Efek glow berdenyut di belakang checkmark */
+  .glow-effect {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.2);
+    z-index: -1;
+    animation: pulseGlow 2s infinite;
+  }
+
+  @keyframes pulseGlow {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    50% { transform: scale(1.4); opacity: 0; }
+    100% { transform: scale(0.8); opacity: 0.5; }
+  }
+
+  .card-enter {
+    animation: slideUp 0.8s ease-out 0.5s both;
+  }
+
+  @keyframes slideUp {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+
+  .info-box {
+    background: linear-gradient(to right, #eff6ff, #f0fdf4);
+    border: 1px solid #dbeafe;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="bg-white/80 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto px-4 py-4 flex justify-center">
+      <div class="flex items-center gap-3">
+        <img src="logo.png" alt="Logo Arutmin Borneo Run" class="h-12 w-auto">
+        <div>
+          <h1 class="font-bold text-slate-800 text-sm md:text-base leading-tight">Arutmin Borneo Run 2026</h1>
+          <p class="text-[10px] md:text-xs text-slate-500">arutminborneorun.com</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex items-center justify-center px-4 py-12">
+    <div class="max-w-xl w-full">
+      
+      <div class="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-slate-100 text-center relative overflow-hidden card-enter">
+        
+        <!-- Decorative Top Accent -->
+        <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-600 via-indigo-500 to-green-500"></div>
+
+        <!-- Success Icon -->
+        <div class="relative mb-8 inline-block">
+          <div class="glow-effect"></div>
+          <div class="checkmark-wrapper">
+            <i class="fas fa-check checkmark-icon"></i>
+          </div>
+        </div>
+
+        <!-- Title & Gratitude Message -->
+        <span class="inline-block px-4 py-1 bg-green-50 text-green-600 rounded-full text-xs font-semibold tracking-wide mb-4">STATUS: PENDAFTARAN DITERIMA</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 tracking-tight mb-4">Terima Kasih!</h2>
+        <p class="text-slate-600 text-base md:text-lg leading-relaxed mb-8">
+          Kami mengucapkan terima kasih telah melakukan pendaftaran untuk mengikuti 
+          <span class="font-semibold text-slate-800">Arutmin Borneo Run 2026</span>. 
+          Data pendaftaran dan bukti pembayaran Anda telah berhasil kami terima dan sedang dalam proses verifikasi tim kami.
+        </p>
+
+        <!-- Professional Instruction Box -->
+        <div class="info-box p-6 rounded-2xl mb-8 text-left flex gap-4 items-start">
+          <div class="flex-shrink-0 mt-1">
+            <i class="fas fa-envelope-open-text text-2xl text-blue-600"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-800 text-base mb-1">Langkah Selanjutnya</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Silakan tunggu email konfirmasi resmi yang akan dikirimkan ke alamat email yang Anda daftarkan. 
+              Email tersebut akan berisi detail informasi peserta, nomor BIB, serta panduan teknis untuk hari perlombaan. 
+              Mohon pastikan folder kotak masuk Anda (termasuk folder spam) diperiksa secara berkala.
+            </p>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="index.html" class="w-full sm:w-auto bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-3 px-8 rounded-xl transition-all flex items-center justify-center gap-2 text-sm">
+            <i class="fas fa-home"></i> Kembali ke Beranda
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Footer Note -->
+      <p class="text-center text-xs text-slate-400 mt-6">
+        Jika Anda memiliki pertanyaan, silakan hubungi center@arutminborneorun.com
+      </p>
+
+    </div>
+  </main>
+
+  <footer class="py-6 text-center text-xs text-slate-400 border-t border-slate-100">
+    © 2026 Arutmin Borneo Run. All Rights Reserved.
+  </footer>
+
+</body>
+</html>
