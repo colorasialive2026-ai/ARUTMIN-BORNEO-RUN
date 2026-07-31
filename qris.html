@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pembayaran QRIS - Arutmin Borneo Run 2026</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+    background-image: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.05) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 20%);
+  }
+  .premium-loader {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .loader-content {
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 1.5rem;
+    text-align: center;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    width: 90%;
+    max-width: 400px;
+  }
+  .spinner {
+    width: 70px;
+    height: 70px;
+    border: 5px solid #e2e8f0;
+    border-bottom-color: #3b82f6;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .progress-container {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 1.5rem;
+  }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #3b82f6, #6366f1);
+    width: 0%;
+    transition: width 0.1s linear;
+    border-radius: 999px;
+  }
+  .timer-warning {
+    animation: pulse 1s infinite;
+  }
+  @keyframes pulse {
+    0% { color: #ef4444; transform: scale(1); }
+    50% { color: #f87171; transform: scale(1.05); }
+    100% { color: #ef4444; transform: scale(1); }
+  }
+  .upload-box {
+    border: 2px dashed #cbd5e1;
+    transition: all 0.3s;
+  }
+  .upload-box:hover {
+    border-color: #3b82f6;
+    background-color: #eff6ff;
+  }
+</style>
+</head>
+<body class="min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-slate-100">
+    <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <img src="logo.png" alt="Logo Arutmin Borneo Run" class="h-12 w-auto">
+        <div>
+          <h1 class="font-bold text-slate-800 text-sm md:text-base leading-tight">Arutmin Borneo Run 2026</h1>
+          <p class="text-[10px] md:text-xs text-slate-500">arutminborneorun.com</p>
+        </div>
+      </div>
+      <a href="index.html" class="text-slate-600 hover:text-blue-600 flex items-center gap-2 text-sm font-medium">
+        <i class="fas fa-arrow-left"></i> Kembali
+      </a>
+    </div>
+  </header>
+
+  <main class="max-w-2xl mx-auto px-4 py-8 md:py-12">
+    
+    <div class="text-center mb-8">
+      <span class="inline-block px-4 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-semibold tracking-wide mb-3">PEMBAYARAN</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 tracking-tight">Scan QRIS</h2>
+      <p class="text-slate-500 mt-3 text-sm">Selesaikan pembayaran dalam waktu 3 menit untuk mengonfirmasi pendaftaran.</p>
+    </div>
+
+    <div class="bg-white p-6 md:p-8 rounded-3xl shadow-xl border border-slate-100 space-y-6">
+      
+      <!-- Timer & Total -->
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+        <div class="text-center md:text-left">
+          <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Sisa Waktu Pembayaran</p>
+          <div id="timer" class="text-4xl font-extrabold text-slate-800 tabular-nums">03:00</div>
+        </div>
+        <div class="h-12 w-px bg-slate-200 hidden md:block"></div>
+        <div class="text-center md:text-right">
+          <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Total Pembayaran</p>
+          <div id="totalPrice" class="text-3xl font-extrabold text-blue-600">Rp 0</div>
+        </div>
+      </div>
+
+      <!-- QRIS Image -->
+      <div class="flex flex-col items-center justify-center p-4">
+        <div class="p-4 bg-white rounded-2xl border-4 border-slate-100 shadow-md">
+          <img src="qris.png" alt="QRIS Payment" class="w-64 h-64 object-contain">
+        </div>
+        <p class="mt-4 text-sm text-slate-600 font-medium flex items-center gap-2">
+          <i class="fas fa-shield-alt text-blue-500"></i>
+          Gunakan aplikasi e-wallet atau m-banking untuk scan QRIS
+        </p>
+      </div>
+
+      <!-- Upload Bukti -->
+      <div class="space-y-3">
+        <label class="block text-sm font-semibold text-slate-700">Upload Bukti Pembayaran <span class="required text-red-500">*</span></label>
+        <label for="uploadBukti" class="upload-box cursor-pointer flex flex-col items-center justify-center p-8 rounded-2xl text-center">
+          <i class="fas fa-cloud-upload-alt text-4xl text-slate-400 mb-3"></i>
+          <span class="text-sm font-semibold text-slate-700">Klik untuk upload file</span>
+          <span class="text-xs text-slate-400 mt-1">Format: JPG, PNG, PDF (Max 2MB)</span>
+          <input type="file" id="uploadBukti" class="hidden" accept="image/*,application/pdf">
+        </label>
+        <div id="filePreview" class="hidden mt-3 text-sm text-slate-600 bg-green-50 p-3 rounded-lg border border-green-100 flex items-center gap-2">
+          <i class="fas fa-check-circle text-green-500"></i>
+          <span id="fileName"></span>
+        </div>
+      </div>
+
+      <!-- Button Daftar -->
+      <button id="daftarBtn" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-4 px-6 rounded-xl transition-all transform hover:scale-[1.01] flex items-center justify-center gap-2 text-base shadow-lg shadow-blue-500/30 disabled:opacity-50 disabled:cursor-not-allowed">
+        <i class="fas fa-check-circle"></i>
+        DAFTAR SEKARANG
+      </button>
+
+      <p class="text-center text-xs text-slate-400">Dengan menekan tombol di atas, sistem akan memproses pendaftaran Anda.</p>
+
+    </div>
+  </main>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="premium-loader">
+    <div class="loader-content">
+      <div class="spinner"></div>
+      <h3 class="text-xl font-bold text-slate-800 mb-2" id="loadingTitle">Memproses Pendaftaran</h3>
+      <p class="text-sm text-slate-500" id="loadingText">Mohon tunggu sebentar...</p>
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <p class="text-xs text-slate-400 mt-4" id="progressText">0% Selesai</p>
+    </div>
+  </div>
+
+  <footer class="py-8 text-center text-xs text-slate-400 border-t border-slate-100 mt-12">
+    © 2026 Arutmin Borneo Run. All Rights Reserved.
+  </footer>
+
+  
+<script>
+const formatRupiah=a=>new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',minimumFractionDigits:0}).format(Number(a)||0);
+document.getElementById('totalPrice').textContent=formatRupiah(localStorage.getItem('abr_price'));
+let timeLeft=180;
+const timer=document.getElementById('timer');
+const btn=document.getElementById('daftarBtn');
+const upload=document.getElementById('uploadBukti');
+const preview=document.getElementById('filePreview');
+const fname=document.getElementById('fileName');
+let expired=false;
+const tick=()=>{
+ if(expired)return;
+ const m=Math.floor(timeLeft/60),s=timeLeft%60;
+ timer.textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+ if(timeLeft<=30)timer.classList.add('timer-warning');
+ if(timeLeft===0){expired=true;}
+};
+const cd=setInterval(()=>{
+ if(timeLeft<=0){
+   clearInterval(cd); expired=true;
+   timer.textContent='WAKTU HABIS'; btn.disabled=true;
+   return;
+ }
+ timeLeft--;
+ tick();
+},1000);
+tick();
+upload.addEventListener('change',e=>{
+ const f=e.target.files[0];
+ if(!f){preview.classList.add('hidden');return;}
+ if(f.size>2*1024*1024){alert('Ukuran file maksimal 2 MB');upload.value='';preview.classList.add('hidden');return;}
+ fname.textContent='File terpilih: '+f.name;
+ preview.classList.remove('hidden');
+});
+let processing=false;
+btn.addEventListener('click',()=>{
+ if(processing||expired)return;
+ const f=upload.files[0];
+ if(!f){alert('Silakan upload bukti pembayaran terlebih dahulu.');return;}
+ processing=true;btn.disabled=true;
+ const ov=document.getElementById('loadingOverlay');
+ ov.style.display='flex';
+ const bar=document.getElementById('progressBar');
+ const txt=document.getElementById('progressText');
+ let p=0;
+ const id=setInterval(()=>{
+   p=Math.min(100,p+1);
+   bar.style.width=p+'%';
+   txt.textContent=p+'% Selesai';
+   if(p>=100){clearInterval(id);location.href='success.html';}
+ },1800);
+});
+</script>
+
+</body>
+</html>
